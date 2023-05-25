@@ -30,7 +30,7 @@ class SquareToRectAdapter {
     return this.square.side;
   }
 
-  get _heigth() {
-    return this.square.side
+  get _height() {
+    return this.square.side;
   }
 }
