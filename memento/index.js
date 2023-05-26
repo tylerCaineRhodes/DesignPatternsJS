@@ -95,11 +95,69 @@ class TokenMachine {
   addToken(token) {
     this.tokens.push(token);
     const m = new Memento(token);
-    m.tokens = this.tokens.map(t => new Token(t.value))
+    m.tokens = this.tokens.map((t) => new Token(t.value));
     return m;
   }
 
   revert(m) {
-    this.tokens = this.tokens.map(t => new Token(t.value))
+    this.tokens = this.tokens.map((t) => new Token(t.value));
   }
 }
+
+class Memento {
+  constructor(state) {
+    this.state = state;
+  }
+
+  getState() {
+    return this.state;
+  }
+}
+
+class Originator {
+  constructor() {
+    this.state = '';
+  }
+
+  setState(state) {
+    this.state = state;
+  }
+
+  saveToMemento() {
+    return new Memento(this.state);
+  }
+
+  restoreFromMemento(memento) {
+    this.state = memento.getState();
+  }
+}
+
+class Caretaker {
+  constructor() {
+    this.savedStates = [];
+  }
+
+  addMemento(memento) {
+    this.savedStates.push(memento);
+  }
+
+  getMemento(index) {
+    return this.savedStates[index];
+  }
+}
+
+const caretaker = new Caretaker();
+const originator = new Originator();
+
+originator.setState('State 1');
+caretaker.addMemento(originator.saveToMemento());
+
+originator.setState('State 2');
+caretaker.addMemento(originator.saveToMemento());
+
+originator.setState('State 3');
+console.log('Current State: ' + originator.state);
+
+// restoring to previous state
+originator.restoreFromMemento(caretaker.getMemento(0));
+console.log('Restored State: ' + originator.state);
