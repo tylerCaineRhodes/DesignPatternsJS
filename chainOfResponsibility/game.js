@@ -1,6 +1,6 @@
 const WhatToQuery = Object.freeze({
-  'attack': 1,
-  'defense': 2
+  attack: 1,
+  defense: 2,
 });
 
 class Query {
@@ -11,7 +11,7 @@ class Query {
 }
 
 class Goblin {
-  constructor(game, baseAttack=1, baseDefense=1) {
+  constructor(game, baseAttack = 1, baseDefense = 1) {
     this.game = game;
     this.baseAttack = baseAttack;
     this.baseDefense = baseDefense;
@@ -36,17 +36,17 @@ class Goblin {
 
   get defense() {
     const query = new Query(WhatToQuery.defense, 0);
-    this.game.creatures.forEach(creature => {
-      creature.handleQuery({ source: this, query })
-    })
+    this.game.creatures.forEach((creature) => {
+      creature.handleQuery({ source: this, query });
+    });
     return query.result;
   }
 
   get attack() {
     const query = new Query(WhatToQuery.attack, 0);
-    this.game.creatures.forEach(creature => {
-      creature.handleQuery({ source: this, query: query })
-    })
+    this.game.creatures.forEach((creature) => {
+      creature.handleQuery({ source: this, query: query });
+    });
     return query.result;
   }
 }

@@ -28,9 +28,9 @@ class BankAccount {
 BankAccount.overdraftLimit = -500;
 
 const Action = Object.freeze({
-  'deposit' : 1,
-  'withdraw': 2
-})
+  deposit: 1,
+  withdraw: 2,
+});
 
 class BankAccountCommand {
   constructor(account, action, amount) {
@@ -41,7 +41,7 @@ class BankAccountCommand {
   }
 
   call() {
-    switch(this.action) {
+    switch (this.action) {
       case Action.deposit:
         this.account.deposit(this.amount);
         this.succeeded = true;
@@ -55,7 +55,7 @@ class BankAccountCommand {
   undo() {
     if (!this.succeeded) return;
 
-    switch(this.action) {
+    switch (this.action) {
       case Action.deposit:
         this.account.withdraw(this.amount);
         this.succeeded = true;
@@ -76,11 +76,10 @@ console.log(ba.toString());
 deposit.undo();
 console.log(ba.toString());
 
-
 const Action = Object.freeze({
   deposit: 0,
-  withdraw: 1
-})
+  withdraw: 1,
+});
 
 class Command {
   constructor(action, amount) {
@@ -96,20 +95,19 @@ class Account {
   }
 
   process(cmd) {
-    switch(cmd.action) {
+    switch (cmd.action) {
       case Action.deposit:
         this.balance += cmd.amount;
         cmd.success = true;
         break;
       case Action.withdraw:
-        if(this.balance - cmd.amount < 0) {
+        if (this.balance - cmd.amount < 0) {
           cmd.success = false;
           break;
         }
-        this.balance -= cmd.amount
+        this.balance -= cmd.amount;
         cmd.success = true;
         break;
     }
   }
 }
-

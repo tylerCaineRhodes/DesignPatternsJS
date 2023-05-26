@@ -2,8 +2,8 @@
 
 class Connectable {
   connectTo(other) {
-    for(const from of this) {
-      for(const to of other) {
+    for (const from of this) {
+      for (const to of other) {
         from.out.push(to);
         to.in.push(from);
       }
@@ -17,8 +17,8 @@ function connectable(Base) {
       super();
     }
     connectTo(other) {
-      for(const from of this) {
-        for(const to of other) {
+      for (const from of this) {
+        for (const to of other) {
           from.out.push(to);
           to.in.push(from);
         }
@@ -40,14 +40,14 @@ class Neuron extends Connectable {
 
   [Symbol.iterator]() {
     let returned = false;
-    return { next: () => ({ value: this, done: returned++ })}
+    return { next: () => ({ value: this, done: returned++ }) };
   }
 }
 
 class NeuronLayer extends extender({ baseClass: Array }, connectable) {
   constructor(count) {
     super();
-    while(count --> 0) {
+    while (count-- > 0) {
       this.push(new Neuron());
     }
   }
@@ -58,7 +58,7 @@ class NeuronLayer extends extender({ baseClass: Array }, connectable) {
 
 function extender({ baseClass }, ...classFunctions) {
   return classFunctions.reduce((accumulator, classFunction) => {
-    return classFunction(accumulator)
+    return classFunction(accumulator);
   }, baseClass);
 }
 
@@ -75,4 +75,3 @@ console.log(neuron1.toString());
 console.log(neuron2.toString());
 console.log(layer1.toString());
 console.log(layer2.toString());
-

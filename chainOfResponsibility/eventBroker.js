@@ -17,13 +17,13 @@ class Event {
   fire(sender, args) {
     this.handlers.forEach((key, val) => {
       key(sender, args);
-    })
+    });
   }
 }
 
 const WhatToQuery = Object.freeze({
-  'attack': 1,
-  'defense': 2
+  attack: 1,
+  defense: 2,
 });
 
 class Query {
@@ -55,13 +55,13 @@ class Creature {
   }
 
   get attack() {
-    const q = new Query(this.name, WhatToQuery.attack, this.initialAttack)
+    const q = new Query(this.name, WhatToQuery.attack, this.initialAttack);
     this.game.performQuery(this, q);
     return q.value;
   }
 
   get defense() {
-    const q = new Query(this.name, WhatToQuery.defense, this.initialDefense)
+    const q = new Query(this.name, WhatToQuery.defense, this.initialDefense);
     this.game.performQuery(this, q);
     return q.value;
   }
@@ -91,7 +91,10 @@ class DoubleAttackModifier extends CreatureModifier {
   }
 
   handle(sender, query) {
-    if(query.creatureName === this.creature.name && query.whatToQuery === WhatToQuery.attack) {
+    if (
+      query.creatureName === this.creature.name &&
+      query.whatToQuery === WhatToQuery.attack
+    ) {
       query.value *= 2;
     }
   }
@@ -106,12 +109,15 @@ class IncreaseDefenseModifier extends CreatureModifier {
     return super.creature;
   }
 
-  set creature(val){
+  set creature(val) {
     super.creature = val;
   }
 
   handle(sender, query) {
-    if(query.creatureName === this.creature.name && query.whatToQuery === WhatToQuery.defense) {
+    if (
+      query.creatureName === this.creature.name &&
+      query.whatToQuery === WhatToQuery.defense
+    ) {
       query.value += 1;
     }
   }
@@ -129,4 +135,3 @@ console.log(goblin.toString());
 
 idm.dispose();
 console.log(goblin.toString());
-

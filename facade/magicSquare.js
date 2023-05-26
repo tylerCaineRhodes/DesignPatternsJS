@@ -2,7 +2,7 @@ class Generator {
   generate(count) {
     const result = [];
     for (let i = 0; i < count; i++) {
-      result.push(Math.floor((Math.random() * 6) + 1));
+      result.push(Math.floor(Math.random() * 6 + 1));
     }
     return result;
   }
@@ -35,7 +35,7 @@ class Splitter {
     // now the diagonals
     const diag1 = [];
     const diag2 = [];
-    for (let c = 0; c < colCount; c++)  {
+    for (let c = 0; c < colCount; c++) {
       for (let r = 0; r < rowCount; r++) {
         if (c === r) diag1.push(array[r][c]);
         const r2 = rowCount - r - 1;
@@ -51,7 +51,7 @@ class Splitter {
 class Verifier {
   verify(array) {
     if (array.length < 1) return false;
-    const adder = function(p, c) {
+    const adder = function (p, c) {
       return p + c;
     };
     const expected = array[0].reduce(adder);
@@ -73,10 +73,10 @@ class MagicSquareGenerator {
   }
 
   generate(size) {
-    while(true) {
+    while (true) {
       const matrix = this._buildMatrix(size);
       const combos = this._splitter.split(matrix);
-      if(this._verifier.verify(combos)) {
+      if (this._verifier.verify(combos)) {
         console.log('SUCCESS!');
         return matrix;
       }
@@ -86,7 +86,7 @@ class MagicSquareGenerator {
 
   _buildMatrix(size) {
     const matrix = [];
-    for(let i = 0; i < size; i++) {
+    for (let i = 0; i < size; i++) {
       matrix.push(this._generator.generate(size));
     }
     return matrix;
@@ -102,6 +102,6 @@ const splitter = new Splitter();
 const arr = [
   [1, 2, 3],
   [4, 5, 6],
-  [7, 8, 9]
-]
+  [7, 8, 9],
+];
 console.log(splitter.split(arr));

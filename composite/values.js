@@ -5,7 +5,7 @@ class SingleValue {
 
   [Symbol.iterator]() {
     let returned = false;
-    return { next: () => ({ value: this.value, done: returned++ })}
+    return { next: () => ({ value: this.value, done: returned++ }) };
   }
 }
 
@@ -15,7 +15,7 @@ class ManyValues extends Array {}
 
 function sum(containers) {
   return containers.reduce((totalSum, numbers) => {
-    for(const val of numbers) {
+    for (const val of numbers) {
       totalSum += val;
     }
     return totalSum;
@@ -27,4 +27,4 @@ const otherValues = new ManyValues();
 otherValues.push(22);
 otherValues.push(33);
 
-console.log(sum([singleValue, otherValues]))
+console.log(sum([singleValue, otherValues]));

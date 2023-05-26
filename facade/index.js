@@ -1,16 +1,16 @@
 class Buffer extends Array {
-  constructor(width=30, height=20) {
+  constructor(width = 30, height = 20) {
     super();
     this.width = width;
     this.height = height;
     this.alloc(width * height);
   }
 
-  write(text, position=0) {}
+  write(text, position = 0) {}
 }
 
 class Viewport {
-  constructor(buffer=new Buffer) {
+  constructor(buffer = new Buffer()) {
     this.buffer = buffer;
     this.offset = 0;
   }
@@ -20,7 +20,7 @@ class Viewport {
   }
 
   getCharAt(index) {
-    return this.buffer[this.offset + index]
+    return this.buffer[this.offset + index];
   }
 }
 
@@ -45,4 +45,3 @@ const c = new Console();
 c.write('hello');
 const ch = c.getCharAt(0);
 this.buffers.push(new Buffer());
-

@@ -14,11 +14,11 @@ class Creature {
 class CreatureModifier {
   constructor(creature) {
     this.creature = creature;
-    this.next =  null;
+    this.next = null;
   }
 
   add(modifier) {
-    if(this.next) {
+    if (this.next) {
       this.next.add(modifier);
     } else {
       this.next = modifier;
@@ -26,7 +26,7 @@ class CreatureModifier {
   }
 
   handle() {
-    if(this.next) this.next.handle();
+    if (this.next) this.next.handle();
   }
 }
 
@@ -58,7 +58,7 @@ class IncreaseDefenseModifier extends CreatureModifier {
   }
 
   handle() {
-    if(this.creature.attack < 3) {
+    if (this.creature.attack < 3) {
       console.log(`Increasing ${this.creature.name}'s defense`);
       this.creature.defense++;
     }

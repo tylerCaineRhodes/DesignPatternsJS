@@ -22,7 +22,7 @@ class BankAccount {
   }
 
   restore(m) {
-    if(m) {
+    if (m) {
       this.balance = m.balance;
       this.changes.push(m);
       this.current = this.changes.length - 1;
@@ -30,7 +30,7 @@ class BankAccount {
   }
 
   undo() {
-    if(this.current > 0) {
+    if (this.current > 0) {
       this.current--;
       const m = this.changes[this.current];
       this.balance = m.balance;
@@ -40,7 +40,7 @@ class BankAccount {
   }
 
   redo() {
-    if(this.current < this.changes.length - 1) {
+    if (this.current < this.changes.length - 1) {
       this.current++;
       const m = this.changes[this.current];
       this.balance = m.balance;
@@ -70,7 +70,6 @@ ba.undo();
 console.log('undo #2:', ba.toString());
 ba.redo();
 console.log('redo #1:', ba.toString());
-
 
 class Token {
   constructor(value = 0) {

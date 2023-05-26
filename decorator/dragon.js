@@ -1,5 +1,5 @@
 class Bird {
-  constructor(age=0) {
+  constructor(age = 0) {
     this.age = age;
   }
 
@@ -9,7 +9,7 @@ class Bird {
 }
 
 class Lizard {
-  constructor(age=0) {
+  constructor(age = 0) {
     this.age = age;
   }
 
@@ -19,7 +19,7 @@ class Lizard {
 }
 
 class Dragon {
-  constructor(age=0) {
+  constructor(age = 0) {
     this.lizard = new Lizard();
     this.bird = new Bird();
     this._age = age;
